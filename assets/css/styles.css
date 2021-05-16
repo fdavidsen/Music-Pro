@@ -1,0 +1,84 @@
+.password {
+  position: relative;
+}
+.password i {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.5rem;
+  color: #606060;
+  font-size: 1.4rem;
+}
+
+.button{
+  padding : 4px 8px;
+}
+
+h5{
+  font-size : 1.4vw;
+  margin : 0;
+
+}
+p{
+  font-size: 1vw;
+  margin : 0;
+}
+
+
+.pinBox{
+  width: 40px;
+  height : 40px;
+  display : inline;
+  text-transform: uppercase;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .button{
+    padding : 4px 8px;
+  }
+
+  .navbar-toggler-icon{
+    width: 20px;
+    height : 20px;
+  }
+
+  h5{
+    font-size : 1.5vw;
+    margin : 0;
+  }
+  p{
+    font-size: 1vw;
+    margin : 0;
+  }
+
+  .inputBox{
+    height: 3vw;
+  }
+
+}
+
+@media screen and (min-width: 200px) and (max-width: 767px)  {
+  .button{
+    padding : 4px 8px;
+  }
+
+  .navbar-toggler-icon{
+    width: 18px;
+    height : 18px;
+  }
+
+
+  h5{
+    font-size : 2vw;
+    margin : 0;
+
+  }
+  p{
+    font-size: 2vw;
+    margin : 0;
+  }
+
+  .inputBox{
+    height: 5vw;
+  }
+
+}
