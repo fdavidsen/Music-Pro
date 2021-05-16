@@ -3,16 +3,20 @@ import mongoose from "mongoose";
 import path from "path";
 import Grid from "gridfs-stream";
 import methodOverride from "method-override";
+import ejs from "ejs";
 import bodyParser from "body-parser";
 import session from "express-session";
 import dotenv from  'dotenv';
-import cors from "cors";
+import passport from "passport";
+import google from "passport-google-oauth20";
 import ConnectMongoDBSession from "connect-mongodb-session";
+import cookieParser from "cookie-parser";
 
 //Routes
 import {router as AudioRoutes} from "./routes/audioRoutes.js";
 import {router as UserRoutes} from "./routes/userRoutes.js";
 import {router as AuthRoutes} from "./routes/authRoutes.js";
+
 
 dotenv.config();
 
@@ -28,22 +32,33 @@ const store = new MongoDBSession({
 
 
 //Middleware
+app.set("view engine", "ejs");
+app.use(express.static("assets/css"));
+app.use(express.static("assets/js"));
+app.use(express.static("assets/img"));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
-app.use(cors());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cookieParser());
+
 
 app.use(session({
   secret : process.env.SESSION_KEY,
   resave : false,
   saveUninitialized : false,
+  sameSite : false,
+  secure : false,
   store : store,
 }));
 
 
+
 //routes
 app.use("/music", AudioRoutes);
-app.use("/user/:userId", UserRoutes);
+app.use("/profile", UserRoutes);
 app.use("/", AuthRoutes);
 
 
@@ -64,11 +79,14 @@ await mongoose.connect(mongoURI, {useNewUrlParser : true, useUnifiedTopology : t
   console.log(err);
 });
 
+app.get("/", (req,res)=>{
+  res.redirect("/music");
+})
+
+
 
 //Export Gfs to be used to find files
 export {conn, gfs};
-
-
 
 
 app.listen(port, function(){
