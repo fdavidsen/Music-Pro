@@ -1,0 +1,63 @@
+.password {
+  position: relative;
+}
+.password i {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.5rem;
+  color: #606060;
+  font-size: 1.4rem;
+}
+
+.offcanvas {
+  width: 250px;
+  color: #a0a0a0;
+}
+.offcanvas .offcanvas-header i {
+  transform: rotate(-5deg);
+}
+.offcanvas .offcanvas-header button {
+  color: #a0a0a0;
+  margin: -1rem -0.5rem;
+}
+.offcanvas .divider {
+  width: calc(100% - 2rem);
+  height: 1px;
+  background-color: #6f6f6f;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+.offcanvas .section-title {
+  color: #6f6f6f;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 0.75rem;
+}
+.offcanvas .section-item {
+  display: block;
+  color: #a0a0a0;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+.offcanvas .section-item i {
+  color: #656565;
+}
+.offcanvas .section-item:hover {
+  color: #f2f1f1;
+}
+
+table .song-img {
+  width: 12.5%;
+}
+table .song-action {
+  width: 20%;
+}
+.edit-song-img {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .edit-song-img {
+    width: 50%;
+  }
+}
