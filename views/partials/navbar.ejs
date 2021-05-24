@@ -1,0 +1,55 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  <div class="container">
+    <a class="navbar-brand" href="music"><h5>Music Pro</h5></a>
+    <button class="navbar-toggler button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <% if(page === "profile"){%>
+          <li class="nav-item">
+            <a class="nav-link" href="music"><p>Home</p></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="profile"><p>Profile</p></a>
+          </li>
+          <% if(isAdmin) {%>
+            <li class="nav-item">
+              <a class="nav-link" href="admin"><p>Admin</p></a>
+            </li>
+          <%}%>
+        <%}else if (page === "music"){%>
+          <li class="nav-item">
+            <a class="nav-link active" href="music"><p>Home</p></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile"><p>Profile</p></a>
+          </li>
+          <% if(isAdmin) {%>
+            <li class="nav-item">
+              <a class="nav-link" href="admin"><p>Admin</p></a>
+            </li>
+          <%}%>
+        <%}else if (page === "admin"){%>
+          <li class="nav-item">
+            <a class="nav-link" href="music"><p>Home</p></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile"><p>Profile</p></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="admin"><p>Admin</p></a>
+          </li>
+        <%}%>
+      </ul>
+    </div>
+    <div class="d-flex">
+      <% if(!isAuth){%>
+        <a class="btn btn-outline-success" href="login"><p>Login</p></a>
+      <%}else{%>
+        <a class="btn btn-outline-danger" href="logout"><p>Logout</p></a>
+      <%}%>
+    </div>
+  </div>
+</nav>

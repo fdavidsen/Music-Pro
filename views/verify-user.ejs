@@ -1,0 +1,43 @@
+<%- include("partials/head.ejs"); %>
+
+
+  <body class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card px-3 py-5 mb-4">
+            <div class="card-body">
+              <form method = "post">
+                <div class="mb-3">
+                  <label class="form-label">Pin</label>
+                  <br  />
+                  <input maxlength="1" onkeypress = "return /[a-z1-9]/i.test(event.key)" name = "pinChar" type="text" class="pinBox form-control" id="pin-1" value = "<%=inputBox.pin[0]%>">
+                  <input maxlength="1" onkeypress = "return /[a-z1-9]/i.test(event.key)" name = "pinChar" type="text" class="pinBox form-control" id="pin-2" value = "<%=inputBox.pin[1]%>">
+                  <input maxlength="1" onkeypress = "return /[a-z1-9]/i.test(event.key)" name = "pinChar" type="text" class="pinBox form-control" id="pin-3" value = "<%=inputBox.pin[2]%>">
+                  <input maxlength="1" onkeypress = "return /[a-z1-9]/i.test(event.key)" name = "pinChar" type="text" class="pinBox form-control" id="pin-4" value = "<%=inputBox.pin[3]%>">
+                  <input maxlength="1" onkeypress = "return /[a-z1-9]/i.test(event.key)" name = "pinChar" type="text" class="pinBox form-control" id="pin-5" value = "<%=inputBox.pin[4]%>">
+                  <input maxlength="1" onkeypress = "return /[a-z1-9]/i.test(event.key)" name = "pinChar" type="text" class="pinBox form-control" id="pin-6" value = "<%=inputBox.pin[5]%>">
+
+                </div>
+                <button type="submit" class="btn btn-primary">Verify</button>
+                <%if(message){%>
+                  <div class="alert alert-danger mb-4 mt-4" role="alert">
+                    <%=message%>
+                  </div>
+                <%}%>
+              </form>
+              <div class="alert alert-warning mt-4" role="alert">
+                The 6 digit pin has been sent to your email. Please check your email and input the pin to register.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>

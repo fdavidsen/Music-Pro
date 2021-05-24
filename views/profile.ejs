@@ -1,0 +1,100 @@
+<%- include("partials/head.ejs"); %>
+
+<body>
+  <%- include("partials/navbar.ejs"); %>
+
+  <div class="container mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card border-0 mb-3">
+          <div class="row align-items-center g-0">
+            <div class="col-4">
+              <img class="w-100" src="user.png" alt="...">
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title"><%= data.displayName %></h5>
+                <p class="card-text"></p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h5 class="text-center mb-5">My Songs</h5>
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-6">
+        <div class="container">
+          <form action = "profile" method = "get" class="d-flex">
+            <input name = "q" class="form-control me-2 inputBox" type="search" placeholder="Search" aria-label="Search" value = "<%=inputBox%>">
+            <button class="btn btn-outline-primary button" type="submit"><p>Search</p</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="song-card-list row justify-content-center">
+      <div class="col-md-6">
+        <% if(data.favoriteMusic.length !== 0){%>
+        <% data.favoriteMusic.forEach((song, index) => {%>
+          <div class="song-card card mb-3" value = "<%=index%>">
+            <div class="row align-items-center g-0">
+              <div class="col-3">
+                <img class="w-100 py-3 ps-3" src="song.jpg" alt="...">
+              </div>
+              <div class="col">
+                <div class="card-body py-0">
+                  <h5 class="card-title song-title"><%=(song.title.length > 12) ? (song.title.substr(0,12) + "...") : (song.title)%></h5>
+                  <p class="card-text mb-3 song-singer"><%=(song.singer > 12) ? (song.singer.substr(0,12) + "...") : (song.singer)%></p>
+                  <p class="card-text">
+                    <% if(song.likeButton === "Like"){%>
+                      <i name= "musicId" value="<%=song._id%>" class="fa fa-heart" aria-hidden="true"></i>
+                    <%}else{%>
+                      <i name= "musicId" value="<%=song._id%>" class="fa fa-heart liked" aria-hidden="true"></i>
+                    <%}%>
+                  </p>
+                </div>
+              </div>
+              <div class="col-3 text-end">
+                <input type="hidden" name="path" value="/music">
+                <button type="button" value = "<%=song.filename%>"  class="btn btn-danger me-3 button play-button">
+                  <i class="fa fa-play" aria-hidden="true"></i>
+                </button>
+
+              </div>
+            </div>
+          </div>
+
+        <%})%>
+        <div class="container h-50"></div>
+
+        <%}else{%>
+          <h4>No song avaiable :(</h4>
+
+        <%}%>
+      </div>
+    </div>
+  </div>
+
+  <%- include("partials/audio-controllers.ejs"); %>
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+  <script src="scripts.js"></script>
+</body>
+
+</html>
