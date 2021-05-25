@@ -36,6 +36,9 @@ app.set("view engine", "ejs");
 app.use(express.static("assets/css"));
 app.use(express.static("assets/js"));
 app.use(express.static("assets/img"));
+app.use(express.static("assets/favicon"));
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
@@ -82,8 +85,6 @@ await mongoose.connect(mongoURI, {useNewUrlParser : true, useUnifiedTopology : t
 app.get("/", (req,res)=>{
   res.redirect("/music");
 })
-
-
 
 //Export Gfs to be used to find files
 export {conn, gfs};

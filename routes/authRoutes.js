@@ -1,6 +1,6 @@
 import express from "express";
 import {loginUser, registerUser, isAuth, isAdmin, forgetPassword, resetPassword, logout, verifyUser,getResetPasswordPage, loginWithGoogle
-, getLoginPage, getRegisterPage, getForgotPasswordPage, getVerifyUserPage} from "../controllers/controllers.js";
+, getLoginPage, getRegisterPage, getForgotPasswordPage, getVerifyUserPage, getAdminPage} from "../controllers/controllers.js";
 import {passwordStrengthValidator, emailValidator, newPasswordStrengthValidator, usernameValidator} from "../controllers/validators.js";
 import path from "path";
 import passport from "passport";
@@ -31,7 +31,7 @@ router.get("/reset", getResetPasswordPage);
 router.post("/reset", passwordStrengthValidator, resetPassword);
 
 
-router.get("/admin", isAdmin, (req,res)=>{res.render("admin")})
+router.get("/admin", isAdmin, getAdminPage)
 
 
 

@@ -9,8 +9,47 @@
   font-size: 1.4rem;
 }
 
+.password {
+  position: relative;
+}
+.password i {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.5rem;
+  color: #606060;
+  font-size: 1.4rem;
+}
+
 .button{
   padding : 4px 8px;
+}
+
+.liked{
+  color : #dc3545;
+}
+
+.enlarge{
+  transform : scale(1.2);
+}
+
+.fa-heart{
+  transition : all 0.1s ease-in;
+}
+
+
+.play-button{
+  visibility: hidden;
+}
+
+.hide{
+  display : none;
+}
+
+#mute-icon{
+  background : transparent;
+  outline : none;
+  border : none;
+  color : white;
 }
 
 h5{
@@ -23,12 +62,117 @@ p{
   margin : 0;
 }
 
+.visible{
+  visibility: visible;
+}
+
 
 .pinBox{
   width: 40px;
   height : 40px;
   display : inline;
   text-transform: uppercase;
+}
+
+.offcanvas {
+  width: 250px;
+  color: #a0a0a0;
+}
+.offcanvas .offcanvas-header i {
+  transform: rotate(-5deg);
+}
+.offcanvas .offcanvas-header button {
+  color: #a0a0a0;
+  margin: -1rem -0.5rem;
+}
+.offcanvas .divider {
+  width: calc(100% - 2rem);
+  height: 1px;
+  background-color: #6f6f6f;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+.offcanvas .section-title {
+  color: #6f6f6f;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 0.75rem;
+}
+.offcanvas .section-item {
+  display: block;
+  color: #a0a0a0;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+.offcanvas .section-item i {
+  color: #656565;
+}
+.offcanvas .section-item:hover {
+  color: #f2f1f1;
+}
+
+.table{
+  margin-bottom: 200px;
+}
+
+
+.song-card-list{
+  margin-bottom : 200px;
+}
+
+table .song-img {
+  width: 12.5%;
+}
+table .song-action {
+  width: 20%;
+}
+.edit-song-img {
+  width: 100%;
+}
+
+lottie-player {
+  width : 24px;
+  height : 24px;
+}
+
+input[type="range"] {
+  position: relative;
+  -webkit-appearance: none;
+  width : 100%;
+  margin: 0;
+  padding: 0;
+  height: 4px;
+  margin : auto;
+  float: left;
+  outline: none;
+  background-color : white;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 10px;
+  width: 10px;
+  border-radius: 3px;
+  background: #909090;
+  cursor: pointer;
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  background: #909090;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  background: #909090;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -52,6 +196,10 @@ p{
 
   .inputBox{
     height: 3vw;
+  }
+
+  .edit-song-img {
+    width: 50%;
   }
 
 }
@@ -81,4 +229,7 @@ p{
     height: 5vw;
   }
 
+  .edit-song-img {
+    width: 50%;
+  }
 }

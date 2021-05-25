@@ -46,8 +46,39 @@ export const getMusicFile = async (req, res) => {
 
     // FILE EXISTS
     if (file.contentType = "audio/mpeg") {
-      const readStream = gfs.createReadStream(file.filename);
-      readStream.pipe(res);
+      const range = req.headers.range;
+
+      if(!range){
+        return res.status(500).send(range);
+      }
+
+      const videoSize = file.length;
+      const start = Number(range.replace(/\D/g,''));
+      const end = videoSize - 1;
+
+      const contentLength = end-start+1;
+
+
+      const headers = {
+        "Content-Range" : `bytes ${start}-${end}/${videoSize}`,
+        "Accept-Ranges" : "bytes",
+        "Content-Length" : contentLength,
+        "Content-Type" : "audio/mpeg",
+      };
+
+
+      res.writeHead(206, headers);
+      const readStream = gfs.createReadStream({
+        filename : file.filename,
+        range: {
+        startPos: start,
+        endPos: end,
+      }
+    }).on("open", function(){
+        readStream.pipe(res);
+      }).on("error", function(err){
+        res.end(err);
+      });
     } else {
       // NOT AN AUDIO FILE
       return res.status(404).json({
@@ -109,6 +140,7 @@ export const getAllMusic = async (req, res) => {
       isAuth : 0,
       page : "music",
       inputBox : (req.query.q) ? (req.query.q) : "",
+      isAdmin : 0,
     });
   } else {
 
@@ -157,11 +189,13 @@ export const getAllMusic = async (req, res) => {
     return res.render("index", {
       data: queriedMusic,
       isAuth : req.session.isAuth,
+      isAdmin : req.session.isAdmin,
       page : "music",
       inputBox : (req.query.q) ? (req.query.q) : "",
     });
   }
 };
+
 
 
 // FUNCTION : POST/UPLOAD A NEW MUSIC (ADMIN)
@@ -181,14 +215,97 @@ export const uploadSingleMusic = async (req, res) => {
     filename
   }).save();
 
-
-
-  return res.status(200).json({
-    message: "Successfully uploaded music",
-    data: newMusic
-  });
+  return res.redirect("/admin");
 }
 
+export const updateMusic = async (req,res)=>{
+  const {musicId} = req.params;
+  const {title : titleInput, singer : singerInput, filename : oldFilename} = req.body;
+  const {filename} = req.file;
+
+
+  const title = titleInput.split(" ").map((word)=>{return lodash.capitalize(word)}).join(" ");
+  const singer = singerInput.split(" ").map((word)=>{return lodash.capitalize(word)}).join(" ");
+
+  const removedAudioFile = await gfs.remove({
+    filename: oldFilename,
+    root: "audios"
+  }, (err, gridStore) => {
+    if (err) {
+      return res.status(404).json({
+        message: err
+      })
+    };
+    return gridStore;
+  });
+
+  const updatedUser = await User.updateMany({favoriteMusic : {$elemMatch : {_id : musicId}}}, {$set : {"favoriteMusic.$.title" : title , "favoriteMusic.$.singer" : singer, "favoriteMusic.$.filename" : filename}}, function(err, result){
+    if(err){
+      return res.status(404).json(err);
+    }
+    return result;
+  });
+
+
+  const updatedMusic = await Music.findByIdAndUpdate(musicId, {title , singer, filename},{new : true}, (err, result)=>{
+    if(err){
+      return res.status(404).json(err);
+    }
+    return result;
+  });
+
+
+  return res.redirect("/admin");
+}
+
+export const updateMusicTitleAndSinger = async (req,res)=>{
+  const {musicId} = req.params;
+  const {title : titleInput, singer : singerInput, filename } = req.body;
+
+  const title = titleInput.split(" ").map((word)=>{return lodash.capitalize(word)}).join(" ");
+  const singer = singerInput.split(" ").map((word)=>{return lodash.capitalize(word)}).join(" ");
+
+
+  const updatedUser = await User.updateMany({favoriteMusic : {$elemMatch : {_id : musicId}}}, {$set : {"favoriteMusic.$.title" : title , "favoriteMusic.$.singer" : singer, "favoriteMusic.$.filename" : filename}}, function(err, result){
+    if(err){
+      return res.status(404).json(err);
+    }
+    return result;
+  });
+
+
+  const updatedMusic = await Music.findByIdAndUpdate(musicId, {title , singer, filename},{new : true}, (err, result)=>{
+    if(err){
+      return res.status(404).json(err);
+    }
+    return result;
+  });
+
+
+  return res.redirect("/admin");
+}
+
+
+
+
+export const deleteAudio = async (req,res)=>{
+  const {filename} = req.params;
+
+
+  const removedAudioFile = await gfs.remove({
+    filename: filename,
+    root: "audios"
+  }, (err, gridStore) => {
+    if (err) {
+      return res.status(404).json({
+        message: err
+      })
+    };
+    return gridStore;
+  });
+
+  return res.send("success");
+}
 
 // FUCNTION : DELETE SINGLE MUSIC (ADMIN)
 export const deleteMusic = async (req, res) => {
@@ -295,6 +412,7 @@ export const getUser = async (req, res) => {
         displayName : user.displayName,
         favoriteMusic: newArray,
       },
+      isAdmin : req.session.isAdmin,
       isAuth : req.session.isAuth,
       page : "profile",
       inputBox : (req.query.q) ? (req.query.q) : "",
@@ -891,4 +1009,22 @@ export const isAdmin = async (req, res, next) => {
       message: "Access denied"
     });
   }
+}
+
+
+// FUNCTION : GET ADMIN PAGE
+export const getAdminPage = async (req,res, next)=>{
+  const allMusic = await Music.find({});
+
+  allMusic.sort((a, b) => {
+    if (a.title > b.title) return 1;
+    if (a.title < b.title) return -1;
+    if (a.title === b.title) {
+      if (a.singer > b.singer) return 1;
+      if (a.singer < b.singer) return -1;
+      return 0;
+    }
+  });
+
+  res.render("admin", {data : allMusic, page : "admin", isAuth : req.session.isAuth, isAdmin : req.session.isAdmin,});
 }

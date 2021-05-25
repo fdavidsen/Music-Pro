@@ -36,34 +36,41 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="song-card-list row justify-content-center">
       <div class="col-md-6">
         <% if(data.favoriteMusic.length !== 0){%>
         <% data.favoriteMusic.forEach((song, index) => {%>
-          <div class="song-card card mb-3">
+          <div class="song-card card mb-3" value = "<%=index%>">
             <div class="row align-items-center g-0">
               <div class="col-3">
                 <img class="w-100 py-3 ps-3" src="song.jpg" alt="...">
               </div>
               <div class="col">
                 <div class="card-body py-0">
-                  <h5 class="card-title"><%=(song.title.length > 12) ? (song.title.substr(0,12) + "...") : (song.title)%></h5>
-                  <p class="card-text mb-3"><%=(song.title.singer > 12) ? (song.singer.substr(0,12) + "...") : (song.singer)%></p>
+                  <h5 class="card-title song-title"><%=(song.title.length > 12) ? (song.title.substr(0,12) + "...") : (song.title)%></h5>
+                  <p class="card-text mb-3 song-singer"><%=(song.singer > 12) ? (song.singer.substr(0,12) + "...") : (song.singer)%></p>
                   <p class="card-text">
-                    <button class="btn btn-secondary profileButton button" type="submit" name="musicId" value=<%=song._id%>>
-                      <p><%=song.likeButton%></p>
-                    </button>
+                    <% if(song.likeButton === "Like"){%>
+                      <i name= "musicId" value="<%=song._id%>" class="fa fa-heart" aria-hidden="true"></i>
+                    <%}else{%>
+                      <i name= "musicId" value="<%=song._id%>" class="fa fa-heart liked" aria-hidden="true"></i>
+                    <%}%>
                   </p>
                 </div>
               </div>
               <div class="col-3 text-end">
                 <input type="hidden" name="path" value="/music">
-                <button type="button" onclick="playMusic('<%=song.filename%>', <%=index%>)" class="btn btn-danger me-3 button"><p>Play</p></button>
+                <button type="button" value = "<%=song.filename%>"  class="btn btn-danger me-3 button play-button">
+                  <i class="fa fa-play" aria-hidden="true"></i>
+                </button>
+
               </div>
             </div>
           </div>
 
         <%})%>
+        <div class="container h-50"></div>
+
         <%}else{%>
           <h4>No song avaiable :(</h4>
 
@@ -71,6 +78,9 @@
       </div>
     </div>
   </div>
+
+  <%- include("partials/audio-controllers.ejs"); %>
+
 
 
 

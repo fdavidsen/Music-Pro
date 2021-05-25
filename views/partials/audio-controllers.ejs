@@ -1,0 +1,55 @@
+<div class="container-fluid fixed-bottom bg-dark text-light  px-5 pb-4 pt-3">
+  <audio class = "current-music" src="" preload = "metadata">
+
+  </audio>
+  <div class="row">
+    <div class="col-lg-3 d-flex flex-column justify-content-center">
+      <div class="d-flex flex-row justify-content-center">
+        <div class="current-music-picture w-25 p-2">
+        </div>
+        <div class="w-75 d-flex flex-column justify-content-center p-2">
+          <h6 class = "current-music-title"></h6>
+          <p class = "text-muted current-music-singer"></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="d-flex flex-column justify-content-center">
+        <div class="d-flex flex-row justify-content-center align-items-center p-4">
+          <div id = "shuffle-container" class="px-4">
+          </div>
+          <div class="px-4">
+              <i class="fa fa-fast-backward" aria-hidden="true"></i>
+          </div>
+          <div class="px-4">
+              <i id = "play-button" class="fa fa-play" aria-hidden="true"></i>
+          </div>
+          <div class="px-4">
+            <i class="fa fa-fast-forward" aria-hidden="true"></i>
+          </div>
+          <div id = "repeat-container" class="px-4">
+
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-1 current-time">
+          </div>
+          <div class="col-10 d-flex flex-column justify-content-center">
+            <input type="range" id="seek-slider" max="100" value="0">
+          </div>
+          <div  class="col-1 duration">
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-lg-2 d-flex flex-row justify-content-center align-items-center">
+      <output id="volume-output">100</output>
+        <input type="range" id="volume-slider" class = "mx-2" max="100" value="100">
+        <button id="mute-icon"><i class="fas fa-volume-up"></i></button>
+    </div>
+    <div class="col-lg-1 d-flex flex-row justify-content-center align-items-center liked-button-container">
+    </div>
+  </div>
+</div>

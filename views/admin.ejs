@@ -1,23 +1,133 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <form class="" action="music" method="post" enctype="multipart/form-data">
-      <label for="title">Title</label>
-      <input id = "title" type="text" name="title" value="">
-      <br  />
-      <br  />
-      <label for="singer">Singer</label>
-      <input id = "singer" type="text" name="singer" value="">
-      <br  />
-      <br  />
-      <input type="file" name="file" value="">
-      <br  />
-      <br  />
-      <button type="submit" name="button">Upload</button>
-    </form>
+<%- include("partials/head.ejs"); %>
+
+<body>
+  <%- include("partials/navbar.ejs"); %>
+
+
+    <div class="container pt-3">
+
+      <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#newSongModal"><i class="fas fa-plus"></i> New song</button>
+
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th scope="col">Photo</th>
+            <th scope="col">Title</th>
+            <th scope="col">Singer</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% data.forEach((music, index)=>{ %>
+            <tr class = "song-card" value = "<%=index%>">
+              <td class="song-img align-middle">
+                <img class="w-100" src="song.jpg" alt="">
+              </td>
+              <td class="align-middle song-title"><%=music.title%></td>
+              <td class="align-middle song-singer"><%=music.singer%></td>
+              <td class="song-action align-middle">
+                <button class="btn btn-sm btn-warning my-1 edit-button" data-bs-toggle="modal" data-bs-target="#editSongModal-1" value = "<%=music._id%>"><i class="fas fa-pencil-alt"></i> Edit</button>
+                <button class="btn btn-sm btn-danger my-1 deleteButton" value ="<%=music._id%>"><i class="fas fa-trash-alt"></i> Delete</button>
+                <button type="button" value = "<%=music.filename%>"  class="btn btn-danger me-3 button play-button">
+                  <i class="fa fa-play" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          <%})%>
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <%- include("partials/audio-controllers.ejs"); %>
+
+
+    <!-- New song modal -->
+    <div class="modal fade" id="newSongModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form enctype="multipart/form-data" method = "post" action = "music">
+            <div class="modal-body py-0">
+              <div class="mb-3">
+                <label for="new-song-title" class="form-label">Title</label>
+                <input name = "title" type="text" class="form-control" id="new-song-title">
+              </div>
+
+              <div class="mb-3">
+                <label for="new-song-singer" class="form-label">Singer</label>
+                <input name ="singer" type="text" class="form-control" id="new-song-singer">
+              </div>
+
+              <label for="new-song-upload"><p class="mb-2">Upload song</p></label>
+              <div class="input-group mb-3">
+                <input name = "file" type="file" class="form-control" id="new-song-upload">
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit song modals -->
+    <div class="modal fade edit-form" id="editSongModal-1" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form  enctype="application/x-www-form-urlencoded" method="post">
+            <div class="modal-body py-0">
+              <div class="text-center">
+                <!-- <img class="edit-song-img shadow mb-3 w-20" src="song.jpg" alt=""> -->
+              </div>
+              <input id = "edit-song-filename" type="hidden" name="filename">
+              <div class="mb-3">
+                <label for="edit-song-title" class="form-label"></label>
+                <input name = "title" type="text" class="form-control" id="edit-song-title">
+              </div>
+
+              <div class="mb-3">
+                <label for="edit-song-singer" class="form-label"></label>
+                <input name = "singer" type="text" class="form-control" id="edit-song-singer">
+              </div>
+
+              <p class="mb-2"></p>
+              <div class="input-group mb-3">
+                <input name = "file" type="file" class="form-control" id="edit-song-upload">
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+              <button type="submit" class="btn btn-primary edit-button-submit">Upload</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+    <script src="scripts.js"></script>
   </body>
 </html>
