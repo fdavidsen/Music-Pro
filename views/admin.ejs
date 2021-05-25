@@ -6,7 +6,7 @@
 
     <div class="container pt-3">
 
-      <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#newSongModal"><i class="fas fa-plus"></i> New song</button>
+      <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#newSongModal"><i class="fas fa-plus"></i> <span>New song</span></button>
 
       <table class="table text-center">
         <thead>
@@ -24,11 +24,11 @@
               <td class="song-img align-middle">
                 <img class="w-100" src="song.jpg" alt="">
               </td>
-              <td class="align-middle song-title"><%=music.title%></td>
-              <td class="align-middle song-singer"><%=music.singer%></td>
+              <td class="align-middle song-title"><p><%=music.title%></p></td>
+              <td class="align-middle song-singer"><p><%=music.singer%></p></td>
               <td class="song-action align-middle">
-                <button class="btn btn-sm btn-warning my-1 edit-button" data-bs-toggle="modal" data-bs-target="#editSongModal-1" value = "<%=music._id%>"><i class="fas fa-pencil-alt"></i> Edit</button>
-                <button class="btn btn-sm btn-danger my-1 deleteButton" value ="<%=music._id%>"><i class="fas fa-trash-alt"></i> Delete</button>
+                <button class="btn btn-sm btn-warning my-1 edit-button" data-bs-toggle="modal" data-bs-target="#editSongModal-1" value = "<%=music._id%>"><i class="fas fa-pencil-alt"></i><span class = "px-1">Edit</span></button>
+                <button class="btn btn-sm btn-danger my-1 deleteButton" value ="<%=music._id%>"><i class="fas fa-trash-alt"></i><span class= "px-1">Delete</span></button>
                 <button type="button" value = "<%=music.filename%>"  class="btn btn-danger me-3 button play-button">
                   <i class="fa fa-play" aria-hidden="true"></i>
                 </button>

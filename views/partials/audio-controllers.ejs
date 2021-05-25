@@ -33,23 +33,25 @@
 
         </div>
         <div class="row">
-          <div class="col-1 current-time">
+          <div class="col-1 current-time p-0">
+            <p></p>
           </div>
           <div class="col-10 d-flex flex-column justify-content-center">
             <input type="range" id="seek-slider" max="100" value="0">
           </div>
-          <div  class="col-1 duration">
+          <div  class="col-1 duration p-0">
+            <p></p>
           </div>
         </div>
 
       </div>
     </div>
-    <div class="col-lg-2 d-flex flex-row justify-content-center align-items-center">
-      <output id="volume-output">100</output>
+    <div class="col-lg-2 col-sm-9 d-flex flex-row justify-content-center align-items-center">
+      <output id="volume-output"><span>100</span></output>
         <input type="range" id="volume-slider" class = "mx-2" max="100" value="100">
         <button id="mute-icon"><i class="fas fa-volume-up"></i></button>
     </div>
-    <div class="col-lg-1 d-flex flex-row justify-content-center align-items-center liked-button-container">
+    <div class="col-lg-1 col-sm-3 d-flex flex-row justify-content-center align-items-center liked-button-container">
     </div>
   </div>
 </div>

@@ -113,12 +113,12 @@ p{
 }
 
 .table{
-  margin-bottom: 200px;
+  margin-bottom: 40vh;
 }
 
 
 .song-card-list{
-  margin-bottom : 200px;
+  margin-bottom : 40vh;
 }
 
 table .song-img {
@@ -190,13 +190,14 @@ input[type=range]::-ms-thumb {
     margin : 0;
   }
   p{
-    font-size: 1vw;
+    font-size: 16px;
+    margin : 0;
+  }
+  span{
+    font-size: 16px;
     margin : 0;
   }
 
-  .inputBox{
-    height: 3vw;
-  }
 
   .edit-song-img {
     width: 50%;
@@ -216,18 +217,19 @@ input[type=range]::-ms-thumb {
 
 
   h5{
-    font-size : 2vw;
+    font-size : 16px;
     margin : 0;
 
   }
   p{
-    font-size: 2vw;
+    font-size: 11px;
+    margin : 0;
+  }
+  span{
+    font-size: 11px;
     margin : 0;
   }
 
-  .inputBox{
-    height: 5vw;
-  }
 
   .edit-song-img {
     width: 50%;

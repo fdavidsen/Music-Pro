@@ -3,12 +3,12 @@ const patt = /^[a-zA-Z0-9]*$/;
 const baseUrl = window.location.host;
 const protocol = window.location.protocol;
 const audio = document.querySelector(".current-music");
-const currentTimeContainer = document.querySelector('.current-time');
+const currentTimeContainer = document.querySelector('.current-time p');
 const playIconContainer = document.querySelector("#play-button");
 const seekSlider = document.querySelector("#seek-slider");
 const playingLottieAnimation = document.createElement("lottie-player");
 const playPauseButton = document.createElement("i");
-const durationContainer = document.querySelector('.duration');
+const durationContainer = document.querySelector('.duration p');
 const volumeSlider = document.getElementById('volume-slider');
 const outputContainer = document.getElementById('volume-output');
 
