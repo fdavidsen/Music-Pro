@@ -1,6 +1,9 @@
+
+
 .password {
   position: relative;
 }
+
 .password i {
   position: absolute;
   right: 0.9rem;
@@ -12,6 +15,7 @@
 .password {
   position: relative;
 }
+
 .password i {
   position: absolute;
   right: 0.9rem;
@@ -20,57 +24,106 @@
   font-size: 1.4rem;
 }
 
-.button{
-  padding : 4px 8px;
+.button {
+  padding: 4px 8px;
 }
 
-.liked{
-  color : #dc3545;
+.liked {
+  color: #dc3545;
 }
 
-.enlarge{
-  transform : scale(1.2);
+.enlarge {
+  transform: scale(1.2);
 }
 
-.fa-heart{
-  transition : all 0.1s ease-in;
+.fa-heart {
+  transition: all 0.1s ease-in;
 }
 
-
-.play-button{
+.play-button {
   visibility: hidden;
 }
 
-.hide{
+.controllers-container{
+  height : 15%;
+}
+
+.audio-controllers-modals{
+  z-index: 10;
+  clip-path : circle(0px at 0% 100%);
+  -webkit-clip-path : circle(0px at 0% 100%);
+  transition : all 1s ease-out;
+}
+
+.audio-controllers-modals.expand{
+  clip-path : circle(250vh at 0% 100%);
+  -webkit-clip-path : circle(250vh at 0% 100%);
+}
+
+
+.duration ,.current-time{
+  width: 12.5%;
+}
+
+.audio-controller {
   display : none;
+  z-index: 1;
 }
 
-#mute-icon{
-  background : transparent;
-  outline : none;
-  border : none;
-  color : white;
+
+
+.mute-icon {
+  background: transparent;
+  outline: none;
+  border: none;
+  color: white;
 }
 
-h5{
-  font-size : 1.4vw;
+h5 {
+  font-size: 20px;
+  margin: 0;
+}
+
+p {
+  font-size: 16px;
+  margin: 0;
+}
+
+span{
+  font-size : 13px;
   margin : 0;
-
-}
-p{
-  font-size: 1vw;
-  margin : 0;
 }
 
-.visible{
+.current-music-big-picture{
+  width : 324px;
+  height : 324px;
+}
+
+.current-music-picture {
+  width: 64px;
+  height: 64px;
+}
+
+.visible {
   visibility: visible;
 }
 
 
-.pinBox{
+
+.audio-controllers-modals .output-container{
+  height: 6%;
+}
+
+.audio-controllers-modals .liked-button-container{
+  height: 4%;
+}
+
+
+
+.pinBox {
   width: 40px;
-  height : 40px;
-  display : inline;
+  height: 40px;
+  display: inline;
   text-transform: uppercase;
 }
 
@@ -78,13 +131,16 @@ p{
   width: 250px;
   color: #a0a0a0;
 }
+
 .offcanvas .offcanvas-header i {
   transform: rotate(-5deg);
 }
+
 .offcanvas .offcanvas-header button {
   color: #a0a0a0;
   margin: -1rem -0.5rem;
 }
+
 .offcanvas .divider {
   width: calc(100% - 2rem);
   height: 1px;
@@ -92,12 +148,14 @@ p{
   margin-left: 1rem;
   margin-bottom: 1rem;
 }
+
 .offcanvas .section-title {
   color: #6f6f6f;
   text-transform: uppercase;
   font-weight: 900;
   font-size: 0.75rem;
 }
+
 .offcanvas .section-item {
   display: block;
   color: #a0a0a0;
@@ -105,49 +163,53 @@ p{
   margin-left: 0.5rem;
   margin-bottom: 1rem;
 }
+
 .offcanvas .section-item i {
   color: #656565;
 }
+
 .offcanvas .section-item:hover {
   color: #f2f1f1;
 }
 
-.table{
+.table {
   margin-bottom: 40vh;
 }
 
-
-.song-card-list{
-  margin-bottom : 40vh;
+.song-card-list {
+  margin-bottom: 40vh;
 }
 
 table .song-img {
   width: 12.5%;
 }
+
 table .song-action {
   width: 20%;
 }
+
 .edit-song-img {
   width: 100%;
 }
 
 lottie-player {
-  width : 24px;
-  height : 24px;
+  width: 24px;
+  height: 24px;
 }
 
 input[type="range"] {
   position: relative;
   -webkit-appearance: none;
-  width : 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
   height: 4px;
-  margin : auto;
+  margin: auto;
   float: left;
   outline: none;
-  background-color : white;
+  background-color: white;
 }
+
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 10px;
@@ -176,60 +238,59 @@ input[type=range]::-ms-thumb {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .button{
-    padding : 4px 8px;
+  .button {
+    padding: 4px 8px;
   }
 
-  .navbar-toggler-icon{
+  .navbar-toggler-icon {
     width: 20px;
-    height : 20px;
+    height: 20px;
   }
 
-  h5{
-    font-size : 1.5vw;
-    margin : 0;
-  }
-  p{
+  h5 {
     font-size: 16px;
-    margin : 0;
-  }
-  span{
-    font-size: 16px;
-    margin : 0;
+    margin: 0;
   }
 
+  p {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  span {
+    font-size: 16px;
+    margin: 0;
+  }
 
   .edit-song-img {
     width: 50%;
   }
-
 }
 
-@media screen and (min-width: 200px) and (max-width: 767px)  {
-  .button{
-    padding : 4px 8px;
+@media screen and (min-width: 200px) and (max-width: 767px) {
+  .button {
+    padding: 4px 8px;
   }
 
-  .navbar-toggler-icon{
+  .navbar-toggler-icon {
     width: 18px;
-    height : 18px;
+    height: 18px;
   }
 
-
-  h5{
-    font-size : 16px;
-    margin : 0;
-
+  h5 {
+    font-size: 16px;
+    margin: 0;
   }
-  p{
+
+  p {
     font-size: 11px;
-    margin : 0;
-  }
-  span{
-    font-size: 11px;
-    margin : 0;
+    margin: 0;
   }
 
+  span {
+    font-size: 11px;
+    margin: 0;
+  }
 
   .edit-song-img {
     width: 50%;

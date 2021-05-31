@@ -2,11 +2,11 @@ import GridFsStorage from "multer-gridfs-storage";
 import multer from "multer";
 import crypto from "crypto";
 import path from "path";
-import dotenv from  'dotenv';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-const mongoURI = process.env.DATABASE_URI
+const mongoURI = process.env.DATABASE_URI;
 
 const storage = new GridFsStorage({
   url: mongoURI,
@@ -25,9 +25,17 @@ const storage = new GridFsStorage({
       });
     });
   },
-  options : {useUnifiedTopology : true, useNewUrlParser : true}
+  options: {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+  }
 });
-const upload = multer({ storage });
 
+const upload = multer({
+  storage
+});
 
-export {upload, storage};
+export {
+  upload,
+  storage
+};

@@ -1,0 +1,58 @@
+<div class="container-fluid fixed-top bg-dark audio-controllers-modals text-light h-100 p-5">
+
+  <div class="row h-100 w-100">
+    <div class="col-lg-3 h-75 w-100 d-flex flex-column justify-content-center">
+      <div class="d-flex h-100 flex-column align-items-center text-center">
+        <i class="fa fa-times exit align-self-end" aria-hidden="true"></i>
+        <div class="d-flex flex-column justify-content-center h-100 w-100 align-items-center">
+          <img class="current-music-big-picture" src="song.jpg" alt="music.jpg">
+        </div>
+        <div class="w-75 d-flex flex-column justify-content-center p-2">
+          <h6 class="current-music-title"></h6>
+          <p class="text-muted current-music-singer"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="controllers-container">
+      <div class="d-flex flex-column justify-content-around w-100 h-100">
+        <div class="d-flex flex-row justify-content-around align-items-center">
+          <div class="shuffle-container">
+          </div>
+          <div>
+            <i class="fa fa-fast-backward" aria-hidden="true"></i>
+          </div>
+          <div>
+            <i class="fa fa-play play-icon-button" aria-hidden="true"></i>
+          </div>
+          <div>
+            <i class="fa fa-fast-forward" aria-hidden="true"></i>
+          </div>
+          <div class="repeat-container">
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="current-time">
+            <p></p>
+          </div>
+          <div class="w-75 d-flex flex-column justify-content-center">
+            <input type="range" class="seek-slider" max="100" value="0">
+          </div>
+          <div class="duration text-end">
+            <p></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-center align-items-center output-container">
+      <output class="w-25 text-end volume-output"><span>100</span></output>
+      <input type="range" class="mx-2 w-50 volume-slider" max="100" value="100">
+      <button class="w-25 text-start mute-icon"><i class="fas fa-volume-up"></i></button>
+    </div>
+    <div class="col-lg-1 col-sm-3 d-flex flex-row justify-content-center align-items-end liked-button-container w-100">
+    </div>
+
+  </div>
+</div>

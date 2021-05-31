@@ -3,6 +3,8 @@
 <body>
   <%- include("partials/navbar.ejs"); %>
 
+  <%- include("partials/audio-controllers-modals.ejs"); %>
+
 
     <div class="container pt-3">
 
@@ -19,10 +21,10 @@
         </thead>
         <tbody>
 
-          <% data.forEach((music, index)=>{ %>
+          <% data.forEach((music, index) => { %>
             <tr class = "song-card" value = "<%=index%>">
               <td class="song-img align-middle">
-                <img class="w-100" src="song.jpg" alt="">
+                <img class="w-100" src="song.jpg" alt="song.jpg">
               </td>
               <td class="align-middle song-title"><p><%=music.title%></p></td>
               <td class="align-middle song-singer"><p><%=music.singer%></p></td>
@@ -34,7 +36,7 @@
                 </button>
               </td>
             </tr>
-          <%})%>
+          <% }) %>
 
         </tbody>
       </table>
@@ -64,7 +66,7 @@
                 <input name ="singer" type="text" class="form-control" id="new-song-singer">
               </div>
 
-              <label for="new-song-upload"><p class="mb-2">Upload song</p></label>
+              <label for="new-song-upload"><p class="mb-2">Music File</p></label>
               <div class="input-group mb-3">
                 <input name = "file" type="file" class="form-control" id="new-song-upload">
               </div>
@@ -92,16 +94,16 @@
               </div>
               <input id = "edit-song-filename" type="hidden" name="filename">
               <div class="mb-3">
-                <label for="edit-song-title" class="form-label"></label>
+                <label for="edit-song-title" class="form-label">Title</label>
                 <input name = "title" type="text" class="form-control" id="edit-song-title">
               </div>
 
               <div class="mb-3">
-                <label for="edit-song-singer" class="form-label"></label>
+                <label for="edit-song-singer" class="form-label">Singer</label>
                 <input name = "singer" type="text" class="form-control" id="edit-song-singer">
               </div>
 
-              <p class="mb-2"></p>
+              <label for="edit-song-upload"><p class="mb-2">Music File</p></label>
               <div class="input-group mb-3">
                 <input name = "file" type="file" class="form-control" id="edit-song-upload">
               </div>
@@ -109,13 +111,15 @@
             <div class="modal-footer border-0">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-              <button type="submit" class="btn btn-primary edit-button-submit">Upload</button>
+              <button type="submit" class="btn btn-primary edit-button-submit">Update</button>
             </div>
           </form>
         </div>
       </div>
     </div>
 
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

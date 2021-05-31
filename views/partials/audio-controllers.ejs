@@ -1,57 +1,60 @@
-<div class="container-fluid fixed-bottom bg-dark text-light  px-5 pb-4 pt-3">
-  <audio class = "current-music" src="" preload = "metadata">
+<div class="container-fluid fixed-bottom bg-dark text-light audio-controller px-4 pb-4 pt-3">
 
-  </audio>
+  <audio class="current-music" src="" preload="metadata"></audio>
+
   <div class="row">
-    <div class="col-lg-3 d-flex flex-column justify-content-center">
-      <div class="d-flex flex-row justify-content-center">
-        <div class="current-music-picture w-25 p-2">
+
+    <div class="col-md-3 d-flex flex-column justify-content-center">
+      <div class="d-flex flex-row justify-content-center align-items-center">
+        <div class="p-2 current-music-picture">
         </div>
         <div class="w-75 d-flex flex-column justify-content-center p-2">
-          <h6 class = "current-music-title"></h6>
-          <p class = "text-muted current-music-singer"></p>
+          <h6 class="current-music-title"></h6>
+          <span class="text-muted current-music-singer"></span>
         </div>
+        <i class="fa fa-play play-icon-button text-end d-flex d-md-none" aria-hidden="true"></i>
+
       </div>
     </div>
-    <div class="col-lg-6">
+
+    <div class="col-md-6 d-none d-md-inline">
       <div class="d-flex flex-column justify-content-center">
         <div class="d-flex flex-row justify-content-center align-items-center p-4">
-          <div id = "shuffle-container" class="px-4">
+          <div class="px-4 shuffle-container">
           </div>
           <div class="px-4">
-              <i class="fa fa-fast-backward" aria-hidden="true"></i>
+            <i class="fa fa-fast-backward" aria-hidden="true"></i>
           </div>
           <div class="px-4">
-              <i id = "play-button" class="fa fa-play" aria-hidden="true"></i>
+            <i class="fa fa-play play-icon-button" aria-hidden="true"></i>
           </div>
           <div class="px-4">
             <i class="fa fa-fast-forward" aria-hidden="true"></i>
           </div>
-          <div id = "repeat-container" class="px-4">
-
+          <div class="px-4 repeat-container">
           </div>
-
         </div>
-        <div class="row">
-          <div class="col-1 current-time p-0">
+        <div class="d-md-flex">
+          <div class="current-time text-end">
             <p></p>
           </div>
-          <div class="col-10 d-flex flex-column justify-content-center">
-            <input type="range" id="seek-slider" max="100" value="0">
+          <div class="w-75 d-flex flex-column justify-content-center px-2">
+            <input type="range" class="seek-slider" max="100" value="0">
           </div>
-          <div  class="col-1 duration p-0">
+          <div class="duration text-start">
             <p></p>
           </div>
         </div>
-
       </div>
     </div>
-    <div class="col-lg-2 col-sm-9 d-flex flex-row justify-content-center align-items-center">
-      <output id="volume-output"><span>100</span></output>
-        <input type="range" id="volume-slider" class = "mx-2" max="100" value="100">
-        <button id="mute-icon"><i class="fas fa-volume-up"></i></button>
+
+    <div class="col-md-2 d-none d-md-flex flex-row justify-content-center align-items-center">
+      <output class="volume-output"><span>100</span></output>
+      <input type="range" class="mx-2 volume-slider" max="100" value="100">
+      <button class="mute-icon"><i class="fas fa-volume-up"></i></button>
     </div>
-    <div class="col-lg-1 col-sm-3 d-flex flex-row justify-content-center align-items-center liked-button-container">
+    <div class="col-md-1 d-none d-md-flex flex-row justify-content-center align-items-center liked-button-container">
     </div>
+
   </div>
 </div>

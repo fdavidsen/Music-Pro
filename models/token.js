@@ -32,5 +32,4 @@ const tokenSchema = new mongoose.Schema({
 tokenSchema.index({ createdAt: 1 }, { expireAfterSeconds: 900 });
 
 const Token = new mongoose.model("token", tokenSchema);
-
 export default Token;
