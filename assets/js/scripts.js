@@ -197,7 +197,7 @@ if (audio) {
       return;
     }
 
-    $(".fa-fast-forward").trigger("click");
+    $(".fa-fast-forward")[0].click();
   })
 
 
