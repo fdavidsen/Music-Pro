@@ -50,6 +50,7 @@
 
 .audio-controllers-modals{
   z-index: 10;
+  font-size: x-small;
   clip-path : circle(0px at 0% 100%);
   -webkit-clip-path : circle(0px at 0% 100%);
   transition : all 1s ease-out;
@@ -94,9 +95,14 @@ span{
   margin : 0;
 }
 
+.song-card{
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
 .current-music-big-picture{
-  width : 324px;
-  height : 324px;
+  max-width : 256px;
+  max-height : 256px;
 }
 
 .current-music-picture {

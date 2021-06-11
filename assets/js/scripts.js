@@ -26,6 +26,7 @@ var musicOrderLinear = [];
 var shuffleOrder = [];
 var shuffleIndex = 0;
 var clickedPlay = false;
+var position = [];
 
 
 document.querySelectorAll(".song-card").forEach((card) => {
@@ -285,6 +286,7 @@ if (audio) {
 
 // SONG CARD ON HOVER
 $(".song-card").mouseenter(function() {
+  if(window.matchMedia('(max-width: 767px)').matches){return;}
 
   this.classList.add("bg-light");
 
@@ -300,6 +302,9 @@ $(".song-card").mouseenter(function() {
 // SONG CARD ON EXIT HOVER
 $(".song-card").mouseleave(function() {
 
+  if(window.matchMedia('(max-width: 767px)').matches){return;}
+
+
   this.classList.remove("bg-light");
 
   if (currentMusic === Number(this.getAttribute("value"))) {
@@ -313,6 +318,34 @@ $(".song-card").mouseleave(function() {
   }
 })
 
+
+$(".song-card").on("mousedown touchstart",function(){
+  position[0]=this.getBoundingClientRect().top;
+  position[1]=this.getBoundingClientRect().left;
+
+
+  const index = Number(this.getAttribute("value"));
+  if (currentMusic !== index) {
+    this.classList.add("bg-light");
+  }
+})
+
+$(".song-card").on("mouseup touchend",function(){
+  const curPosition = [this.getBoundingClientRect().top,this.getBoundingClientRect().left];
+
+  this.classList.remove("bg-light");
+
+
+  if((curPosition[0] === position[0]) && (curPosition[1] === position[1])){
+
+    const index = Number(this.getAttribute("value"));
+
+    if (currentMusic !== index) {
+      $(".song-card .play-button")[index].click();
+    }
+
+  }
+})
 
 // TOGGLE "RANDOM" STATE
 $(document).on("click", ".fa-random", function() {
@@ -440,7 +473,7 @@ $(".play-button").click(function() {
       playIconContainer[1].classList = "fa fa-pause play-icon-button text-end d-flex d-md-none";
       playIconContainer[2].classList = "fa fa-pause";
 
-      this.innerHTML = '<i class = "fa fa-pause" aria-hidden></i>'
+      this.innerHTML = (window.matchMedia('(max-width: 767px)')) ? '<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_cWQSb4.json"  background="transparent"  speed="1"  style="width: 24px; height: 24px;"  loop  autoplay></lottie-player>' :'<i class = "fa fa-pause" aria-hidden></i>';
       playState = 'play';
 
     } else {
