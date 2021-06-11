@@ -40,6 +40,14 @@
   transition: all 0.1s ease-in;
 }
 
+.fa-times{
+  font-size : medium;
+}
+
+.audio-controllers-modals .controllers-container{
+  font-size : small;
+}
+
 .play-button {
   visibility: hidden;
 }
